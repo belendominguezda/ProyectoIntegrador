@@ -3,7 +3,7 @@ let router = express.Router();
 let searchResultsController = require ('../controllers/searchResultsController');
 
 //Rutas
-router.get ('/', searchResultsController.index);
+router.get ('/:busqueda?', searchResultsController.index);
 
 
 module.exports = router;
