@@ -7,7 +7,8 @@ let loginController = {
         //contrasena = document.getElementById("contrasena").value;
 
         let user = req.query.usuario;
-        let contr = req.query.contraseña;
+        let contr = req.query.contrasena;
+        console.log(user)
 
         if (user == null && contr == null){
             logeado = false
@@ -15,9 +16,11 @@ let loginController = {
             logeado = true
         }
         return res.render ('login',{
-            logeado : logeado,
+            logeado : logeado
         })
     }    
     }
 
 module.exports = loginController
+
+
