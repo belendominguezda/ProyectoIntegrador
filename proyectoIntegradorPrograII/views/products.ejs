@@ -7,15 +7,16 @@
 	<!-- /Header -->
 	<!-- product detail -->
 	<div class="container products-wrapper">
+
+		<% for( let i = 0; i < 1 ; i++ ) { %>
+
 		<div class="d-flex align-items-center">
-			<h2 class="products-title">Nombre del producto</h2> 
+			<h2 class="products-title"> <%=informacion[i].nombreDelProducto%>
+				</h2> 
 			<p class="product-detail-description">
 				<a href="/products/product-add">Editar</a>
 			</p>
 		</div>
-
-		<% for( let i = 0; i < 1 ; i++ ) { %>
-		
 
 		<div class="product-detail">
 			<div class="row">
