@@ -34,13 +34,15 @@
 					<li><a href="/products/product-add">Cargar productos</a></li>
 				</ul>
 	
+				<% for (let i=0; i<informacion.length; i++){ %>
 				<ul class="right-navbar">
 					<li><a href="/profile">
-							Nombre del usuario <i class="fas fa-user"></i>
+							<%= informacion[i].usuario %> <i class="fas fa-user"></i>
 						</a>
 					</li>
+				<% } %>
 					<li>
-						<form action="" method="post">
+						<form action="/" method="GET">
 							<button class="logout" type="submit">
 								Cerrar sesión <i class="fas fa-sign-in-alt"></i>
 							</button>

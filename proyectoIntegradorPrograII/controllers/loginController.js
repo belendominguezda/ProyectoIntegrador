@@ -1,3 +1,4 @@
+let db = require('../db/db')
 let loginController = {
     index: function obtenerDatos (req,res){
         //Capturo el valor de 'usuario' y 'contraseña'
@@ -16,7 +17,8 @@ let loginController = {
             logeado = true
         }
         return res.render ('login',{
-            logeado : logeado
+            logeado : logeado,
+            informacion : db.lista
         })
     }    
     }

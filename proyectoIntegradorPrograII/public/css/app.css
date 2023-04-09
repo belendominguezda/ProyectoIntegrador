@@ -182,6 +182,10 @@ hr {
   overflow: hidden;
   transition: 300ms;
   margin: 20px 0;
+  /*display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;*/
 }
 
 .product-box a {
