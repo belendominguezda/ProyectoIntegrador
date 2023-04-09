@@ -6,7 +6,7 @@ let informacion = {
             contrasena: "JPerez2023",
             fechaDeNacimiento: "03/03/2003",
             nroDoc: "45730730",
-            fotoPerfil: "images/juanPerez.webp",
+            fotoPerfil: "images/juanPerez.jpg",
             comentario: "Me encanta. El sonido me transmite a esa época",
         }],    
     productos: [
