@@ -11,11 +11,24 @@
 			<div class="col-12">
 				<h2 class="products-title">Resultados de búsqueda</h2>
 			</div>
-			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> <i>///////////////////////////////////////// <br> Acá van los resultados de búsqueda. <br>
-			Eliminen estás líneas y cosntruyan la página de resultados de búsqueda. <br>
-			////////////////
-			</h2>
+
+			<% for (let i=6; i<10;i++){ %>
+
+				<div class="col-12 col-sm-6 col-lg-3">
+					<section class="product-box">
+						<a href="/products">
+							<figure class="product-box_image">
+								<img src="<%=informacion[i].imagen %>" alt="<%=informacion[i].nombreDelProducto %>">
+							</figure>
+							<article class="product-box_data">
+								<h2><%=informacion[i].nombreDelProducto %></h2>
+								<p><%=informacion[i].descripcion %></p>
+								<p>Comentarios: <%=informacion[i].comentarios%></p>
+							</article>
+							</a>
+					</section>
+				</div>
+				<% } %>
 
 
 	<!-- footer -->
