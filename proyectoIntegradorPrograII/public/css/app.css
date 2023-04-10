@@ -1,5 +1,7 @@
 /*====== Fonts ======*/
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap');
 
 
 /*====== Variables ======*/
@@ -10,7 +12,9 @@
   --gray: #000000;
   --light-gray: #ffffff;
   --green: #39b54a;
-  --base-font-family: 'Roboto', sans-serif
+  --base-font-family: 'Roboto', sans-serif;
+  --base-font-family2: 'Nunito', sans-serif;
+  --base-font-family3:'Noto Sans TC', sans-serif;
 }
 
 
@@ -27,7 +31,7 @@ body {
 }
 
 body {
-  font-family: var(--base-font-family);
+  font-family:var(--base-font-family2);
   font-weight: 300;
   background-color: var(--light-gray);
 }
@@ -162,7 +166,6 @@ hr {
   height: 100px;
 }
 
-
 /*====== Products ======*/
 .products-wrapper {
   margin-top: 30px;
@@ -171,8 +174,8 @@ hr {
 
 .products-title {
   font-size: 3em;
-  font-weight: 400;
-  font-family: 'Georgia';
+  font-family: var(--base-font-family3);
+  font-weight:100;
   color: var(--gray);
 }
 
