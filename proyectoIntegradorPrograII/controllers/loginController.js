@@ -1,6 +1,6 @@
 let db = require('../db/db')
 let loginController = {
-    index: function obtenerDatos (req,res){
+    index: function (req,res){
         //Capturo el valor de 'usuario' y 'contraseña'
 
         //NO SE SI ESTO VA

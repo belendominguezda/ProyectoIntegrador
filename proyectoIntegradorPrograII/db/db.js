@@ -13,7 +13,7 @@ let informacion = {
         {//1
         id: 1,
         imagen: "images/1.webp",
-        nombreDelProducto: "GREATEST HITS - Queen",
+        nombreDelProducto: "Queen - GREATEST HITS",
         descripcion: "Greatest Hits es el primer álbum compilatorio de la banda de rock Queen, aparecido en 1981. En él se reúnen los éxitos de la banda entre 1974 y 1980. Esta lista corresponde a la edición en el Reino Unido. En otros países tuvo diferentes canciones.",
         fechaDeCarga: "1981",
         comentarios: 2
