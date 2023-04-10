@@ -29,26 +29,26 @@
 	
 			<nav class="main-navbar">
 				<ul class="left-navbar">
-					<li><a href="/">Todos los productos</a></li>
-					<li><a href="/products/product-add">Cargar productos</a></li>
+					<li><a href="/" class="navegacion">Todos los productos</a></li>
+					<li><a href="/products/product-add" class="navegacion">Cargar productos</a></li>
 				</ul>
 	
 				<% for (let i=0; i<informacion.length; i++){ %>
 				<ul class="right-navbar">
-					<li><a href="/profile">
+					<li><a href="/profile" class="navegacion">
 							<%= informacion[i].usuario %> <i class="fas fa-user"></i>
 						</a>
 					</li>
 				<% } %>
 					<li>
 						<form action="/" method="GET">
-							<button class="logout" type="submit">
+							<button class="logout" type="submit" class="navegacion">
 								Cerrar sesión <i class="fas fa-sign-in-alt"></i>
 							</button>
 						</form>
 					</li>
 					<!-- Solo deslogueado--> <li>
-						<a href="/register">Creá tu cuenta <i class="far fa-address-card"></i>
+						<a href="/register" class="navegacion">Creá tu cuenta <i class="far fa-address-card"></i>
 						</a>
 					</li>
 				</ul>

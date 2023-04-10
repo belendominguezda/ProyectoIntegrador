@@ -13,7 +13,7 @@ let informacion = {
         {//1
         id: 1,
         imagen: "images/1.webp",
-        nombreDelProducto: "Queen - GREATEST HITS",
+        nombreDelProducto: "Queen - Greatest Hits",
         descripcion: "Greatest Hits es el primer álbum compilatorio de la banda de rock Queen, aparecido en 1981. En él se reúnen los éxitos de la banda entre 1974 y 1980. Esta lista corresponde a la edición en el Reino Unido. En otros países tuvo diferentes canciones.",
         fechaDeCarga: "1981",
         comentarios: 2
@@ -35,11 +35,11 @@ let informacion = {
 
     },{//4
         id: 4,
-        imagen: "./images/4.webp",
-        nombreDelProducto: "Dua lipa - Dua lipa",
-        descripcion: "Dua Lipa es una cantante, compositora, modelo y actriz británica de origen albanokosovar. Después de trabajar como modelo, firmó con Warner Bros. Records en 2014 y lanzó su álbum debut homónimo en 2017.",
-        fechaDeCarga: "2017",
-        comentarios: 7
+        imagen: "./images/9.webp",
+        nombreDelProducto: "Tom Petty and the heartbreakers - You are gonna get it",
+        descripcion: "Tom Perty and the Heartbreakers - You Are Gonna Get It",
+        fechaDeCarga: "1978",
+        comentarios: 14,
     },{//5
         id: 5,
         imagen: "./images/5.webp",
@@ -59,7 +59,7 @@ let informacion = {
     },{//7
         id: 7,
         imagen: "./images/7.webp",
-        nombreDelProducto: "Bruno Ms - Unorthodox Jukebox",
+        nombreDelProducto: "Bruno Mars - Unorthodox Jukebox",
         descripcion: "Unorthodox Jukebox —en español: Rocola no convencional— es el segundo álbum de estudio del cantante estadounidense Bruno Mars, lanzado el 6 de diciembre de 2012 por Atlantic Records. El 4 de diciembre de 2012, el álbum estaba disponible para escucharse completo una semana antes de su lanzamiento.",
         fechaDeCarga: "2012",
         comentarios: 7
@@ -74,11 +74,11 @@ let informacion = {
 
     },{//9
         id: 9,
-        imagen: "./images/9.webp",
-        nombreDelProducto: "Tom Petty and the heartbreakers - You are gonna get it",
-        descripcion: "Tom Perty and the Heartbreakers - You Are Gonna Get It",
-        fechaDeCarga: "1978",
-        comentarios: 14
+        imagen: "./images/4.webp",
+        nombreDelProducto: "Dua lipa - Dua lipa",
+        descripcion: "Dua Lipa es una cantante, compositora, modelo y actriz británica de origen albanokosovar. Después de trabajar como modelo, firmó con Warner Bros. Records en 2014 y lanzó su álbum debut homónimo en 2017.",
+        fechaDeCarga: "2017",
+        comentarios: 7
 
     },{//10
         id: 10,
