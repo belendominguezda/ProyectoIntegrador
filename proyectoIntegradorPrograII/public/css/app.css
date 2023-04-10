@@ -5,10 +5,10 @@
 /*====== Variables ======*/
 :root {
   --yellow: #fee2f1;
-  --dark-blue: #03264C;
-  --light-blue: #1259c3;
-  --gray: #666666;
-  --light-gray: #ebebeb;
+  --dark-blue: #47034c;
+  --light-blue: #c3124a;
+  --gray: #000000;
+  --light-gray: #d0defa;
   --green: #39b54a;
   --base-font-family: 'Roboto', sans-serif
 }
@@ -265,7 +265,7 @@ hr {
 
 /*====== Footer ======*/
 .main-footer {
-  background-color: #ffffff;
+  background-color: #fee2f1;
   padding: 20px 0;
   margin-top: 80px;
 }
