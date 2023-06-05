@@ -1,7 +1,7 @@
 const config = require("../config/config")
 
 module.exports = function(sequelize,DataTypes){
-    let alias = "Producto"; //es el nombre del modelo en el controlador
+    let alias = "Comentario"; //es el nombre del modelo en el controlador
     
     let cols = {
         id: {
