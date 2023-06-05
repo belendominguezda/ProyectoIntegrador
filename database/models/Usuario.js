@@ -24,19 +24,19 @@ module.exports = function(sequelize,DataTypes){
         dni: {
             type: DataTypes.INTEGER
         },
-        created_At:{
+        createdAt:{
             type: DataTypes.DATE
         },
-        updated_At:{
+        updatedAt:{
             type: DataTypes.DATE
         },
-        deleted_At: {
+        deletedAt: {
             type: DataTypes.DATE
         }
     }
 
     let config = {
-        tableName: "usuarios",
+        tableName: "tablaUsuarios",
     }
 
     let Usuario = sequelize.define(alias,cols,config);

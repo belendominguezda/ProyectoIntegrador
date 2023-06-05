@@ -24,19 +24,19 @@ module.exports = function(sequelize,DataTypes){
         comentarios: {
             type: DataTypes.INTEGER
         },
-        created_At:{
+        createdAt:{
             type: DataTypes.DATE
         },
-        updated_At:{
+        updatedAt:{
             type: DataTypes.DATE
         },
-        deleted_At: {
+        deletedAt: {
             type: DataTypes.DATE
         }
     }
 
     let config = {
-        tableName: "usuarios",
+        tableName: "tablaUsuarios",
     }
 
     let Producto = sequelize.define(alias,cols,config);
@@ -51,7 +51,7 @@ module.exports = function(sequelize,DataTypes){
     //Asociacion tabla de productos con la de comentarios (un producto tiene muchos comentarios)
     Producto.associate = function(models){
         Producto.hasMany(models.Comentario, {
-            as: "comentarios",
+            as: "comentario",
             foreignKey: "productos_id"
         })
 

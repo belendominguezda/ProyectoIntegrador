@@ -18,19 +18,19 @@ module.exports = function(sequelize,DataTypes){
         comentario: {
             type: DataTypes.INTEGER
         },
-        created_At:{
+        createdAt:{
             type: DataTypes.DATE
         },
-        updated_At:{
+        updatedAt:{
             type: DataTypes.DATE
         },
-        deleted_At: {
+        deletedAt: {
             type: DataTypes.DATE
         }
     }
 
     let config = {
-        tableName: "comentarios",
+        tableName: "tablaComentarios",
     }
 
     let Comentario = sequelize.define(alias,cols,config);
