@@ -36,25 +36,24 @@ module.exports = function(sequelize,DataTypes){
     }
 
     let config = {
-        tableName: "tablaUsuarios",
+        tableName: "tablaProductos",
+        underscored: false
     }
 
     let Producto = sequelize.define(alias,cols,config);
     //Asociacion tabla de productos con usuario (muchos productos tienen un usuario)
     Producto.associate = function(models){
         Producto.belongsTo(models.Usuario,{
-            as: "usuario",
+            as: "users",
             foreignKey : "usuario_id"
-        })
-    }
-
-    //Asociacion tabla de productos con la de comentarios (un producto tiene muchos comentarios)
-    Producto.associate = function(models){
+        });
         Producto.hasMany(models.Comentario, {
             as: "comentario",
             foreignKey: "productos_id"
         })
-
     }
+
+    //Asociacion tabla de productos con la de comentarios (un producto tiene muchos comentarios)
+  
     return Producto
 }

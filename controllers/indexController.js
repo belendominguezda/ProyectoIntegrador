@@ -8,7 +8,13 @@ let indexController = {
     // return res.render ('index', {
     //     informacion : db.productos
     // }) 
-        db.Producto.findAll()
+
+    let rel = {
+        include: [
+            {association: "users"}
+        ]
+    }
+        db.Producto.findAll(rel)
             .then(function(usuarioAll){
                 return res.send (usuarioAll)
             })

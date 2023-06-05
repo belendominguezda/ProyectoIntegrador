@@ -40,15 +40,13 @@ module.exports = function(sequelize,DataTypes){
         Comentario.belongsTo(models.Usuario,{
             as: "usuario",
             foreignKey : "usuario_id"
-        })
-    }
-
-    //Asociacion con la tabla de productos
-    Comentario.associate = function(models){
+        });
         Comentario.belongsTo(models.Producto,{
             as: "producto",
             foreignKey : "productos_id"
         })
     }
+
+
     return Comentario
 }
