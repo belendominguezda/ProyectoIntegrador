@@ -34,8 +34,8 @@ module.exports = function(sequelize,DataTypes){
     }
 
     let Comentario = sequelize.define(alias,cols,config);
+    
     //Asociacion con la tabla de usuario
-
     Comentario.associate = function(models){
         Comentario.belongsTo(models.Usuario,{
             as: "usuario",

@@ -8,7 +8,7 @@ let indexController = {
     // return res.render ('index', {
     //     informacion : db.productos
     // }) 
-        db.Comentario.findAll()
+        db.Producto.findAll()
             .then(function(usuarioAll){
                 return res.send (usuarioAll)
             })
