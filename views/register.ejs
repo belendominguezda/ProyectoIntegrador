@@ -3,11 +3,7 @@
 	<%- include("./partials/head") %>
 <body>
 	<!-- Header -->
-	<% if (logeado == true) { %>
-		<%- include("./partials/headerLogueado") %>
-	<% } else { %> 
-		<%- include("./partials/header") %>
-	<% } %> 
+	<%- include("./partials/header") %>
 	<!-- /Header -->
 
 	<!-- Novedades -->
@@ -20,6 +16,11 @@
 
 			<article>
 				<form action="/user/register" method="POST"> <!-- ACA VA A IR A INDEX PERO TIENE QUE SER CON EL HEADER LOGEADO-->
+					<div>
+						<% if (locals.errors) {%>
+							<p style="color: red"><%= errors.message%></p> 
+						<% } %>
+					</div>
 					<div>
 					<input type="email" name="email" placeholder="Email">
 					</div>
