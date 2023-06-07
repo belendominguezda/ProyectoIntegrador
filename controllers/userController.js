@@ -1,6 +1,6 @@
 let db = require('../database/models');
 let op = db.Sequelize.Op;
-//let bcrypt = require('bcryptjs');
+let bcrypt = require('bcryptjs');
 
 let userController = {
     register: function (req,res){
@@ -46,39 +46,68 @@ let userController = {
     },store: function(req,res){
         let form = req.body
 
-        let user = {
-            email : form.email,
-            usuario : form.usuario,
-          //contrasena : bcriptjs.hashSync(form.contrasena, 10),
-            fechaNacimiento : form.fechaNacimiento,
-            documento : form.documento,
-            fotoPerfil : 'default-image.png'}
-        
+            email = form.email;
+            usuario = form.usuario;
+            contrasena = form.contrasena;
+            fechaNacimiento = form.fechaNacimiento;
+            documento = form.documento;
+
         //Mandar mensaje de los errores
         let buscaEmail = {
-            where: [{email: user.email}]
+            where: [{email: email}]
         }
         db.Usuario.findOne(buscaEmail)
             .then (function(resultado){
                 let errors = {};
-            if (user.email == ""){
+            if (email == ""){
                 errors.message = "El email está vacío";
                 res.locals.errors = errors;
                 return res.render ('register');
-            } /* else if (user.contrasena.length < 3){
+            } else if (contrasena.length < 3){
                 errors.message = "La clave debe tener como mínimo 3 caracteres"
                 res.locals.errors = errors;
                 return res.render ('register');
-            } */ else if (user.usuario == ""){
+            } else if (usuario == ""){
                 errors.message = "El campo del usuario es obligatorio"
                 res.locals.errors = errors;
-                return res.render ('register');}
+                return res.render ('register');
+            } else if (resultado != null){
+                errors.message = "El email ya ha sido utilizado."
+                res.locals.errors = errors;
+                return res.render('register')
+
+            } else {
+                let user = {
+                    email : form.email,
+                    usuario : form.usuario,
+                    contrasena: bcrypt.hashSync(contrasena, 10),
+                    fechaNacimiento : form.fechaNacimiento,
+                    documento : form.documento,
+                    //FOTO DE PERFIL
+                }
+                db.Usuario.create(user)
+                .then(function(resultado){
+                    return res.redirect ('/user/profile');
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
+            }
             })
         
          //Encriptar la contraseña antes de guardar en la base de datos.
         
 
         //Buscar el usuario en la db    
+
+        //Agregar a la db
+        /* let user = {
+            email : form.email,
+            usuario : form.usuario,
+            contrasena : form.contrasena,
+            fechaNacimiento : form.fechaNacimiento,
+            documento : form.documento,
+            fotoPerfil : 'default-image.png'} */
 
          //Usar un método de Sequelize para guardar datos.
         // db.User.create(user) //Pasar un objeto literal con los datos a guardar.
