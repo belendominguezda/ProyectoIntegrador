@@ -16,11 +16,12 @@ let indexController = {
     }
         db.Producto.findAll(rel)
             .then(function(usuarioAll){
-                return res.send (usuarioAll)
+                //return res.send (usuarioAll)
             })
             .catch( function(error){
                 console.log(error);
             })
+            return res.render ('index')
     },
     search: function (req,res){
         return res.render ('search-results',{

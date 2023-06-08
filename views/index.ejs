@@ -4,6 +4,9 @@
 <body>
 	<!-- Header -->
 		<%- include("./partials/header") %>
+		<% if (locals.user != undefined) {%>
+		<p>Bienvenido <%= locals.user.usuario%></p>
+		<% } %>
 
 	<!-- Banner -->
 	<div class="banner">
@@ -19,23 +22,20 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 
-			<% for (let i=0; i<4;i++){ %>
-
 			<div class="col-12 col-sm-6 col-lg-3">
 				<section class="product-box">
 					<a href="/products">
 						<figure class="product-box_image">
-							<img src="<%=informacion[i].imagen %>" alt="<%=informacion[i].nombreDelProducto %>">
+							<img src="/public/images/1.webp">
 						</figure>
 						<article class="product-box_data">
-							<h2><%=informacion[i].nombreDelProducto %></h2>
-							<p><%=informacion[i].descripcion %></p>
-							<p>Comentarios: <%=informacion[i].comentarios%></p>
+							<h2>Nombre%></h2>
+							<p>Descripcion</p>
+							<p>Comentarios</p>
 						</article>
 						</a>
 				</section>
 			</div>
-			<% } %>
 		</div>
 	</div>
 
@@ -47,25 +47,22 @@
 				<h2 class="products-title">Más comentados</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<% for (let i=4; i<8;i++){ %>
 
 			<div class="col-12 col-sm-6 col-lg-3">
 				<section class="product-box">
 					<a href="/products">
 						<figure class="product-box_image">
-								<img src="<%=informacion[i].imagen %>" alt="foto vinilo">
+								<img src="/public/images/10.webp" alt="foto vinilo">
 						</figure>
 							<article class="product-box_data">
-								<h2><%=informacion[i].nombreDelProducto %></h2>
-								<p><%=informacion[i].descripcion %></p>
-								<p>Comentarios: <%=informacion[i].comentarios%></p>
+								<h2>Informacion</h2>
+								<p>Descripcion</p>
+								<p>Comentarios:</p>
 							</article>
 							</a>
 					</a>
 				</section>
 			</div>
-			<% } %>
-
 		</div>
 	</div>
 	<!-- /Más comentados -->

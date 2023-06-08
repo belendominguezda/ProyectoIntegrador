@@ -93,6 +93,7 @@ let userController = {
                 if (resultado != null){
                     let contra = resultado.contrasena
                     let contrasenaCorrecta = bcrypt.compareSync(contrasena, contra)
+
                     if (contrasenaCorrecta == true){
                         //Lo pongo en session
                         req.session.user = resultado
