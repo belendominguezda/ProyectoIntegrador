@@ -94,33 +94,7 @@ let userController = {
                 })
             }
             })
-        
-         //Encriptar la contraseña antes de guardar en la base de datos.
-        
-
-        //Buscar el usuario en la db    
-
-        //Agregar a la db
-        /* let user = {
-            email : form.email,
-            usuario : form.usuario,
-            contrasena : form.contrasena,
-            fechaNacimiento : form.fechaNacimiento,
-            documento : form.documento,
-            fotoPerfil : 'default-image.png'} */
-
-         //Usar un método de Sequelize para guardar datos.
-        // db.User.create(user) //Pasar un objeto literal con los datos a guardar.
-       //  .then(function(usuarioCreado){ //retorna el elemento creado
-             //Dentro del then debería redireccionar a otra ruta.
-          //   console.log(usuarioCreado);
-                 // return res.send(form);
-         //    return res.redirect('/');
-       //  })
-    //      .catch(function(e){
-    //          console.log(e);
-    //      })
-         
+             
     },processLogin: function(req,res){
 
     },logout: function(req,res){

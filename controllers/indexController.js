@@ -11,7 +11,7 @@ let indexController = {
 
     let rel = {
         include: [
-            {association: "users"}
+            {association: "usuario"}
         ]
     }
         db.Producto.findAll(rel)

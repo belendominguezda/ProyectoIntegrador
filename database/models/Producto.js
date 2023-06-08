@@ -44,7 +44,7 @@ module.exports = function(sequelize,DataTypes){
     //Asociacion tabla de productos con usuario (muchos productos tienen un usuario)
     Producto.associate = function(models){
         Producto.belongsTo(models.Usuario,{
-            as: "users",
+            as: "usuario",
             foreignKey : "usuario_id"
         });
         Producto.hasMany(models.Comentario, {
