@@ -3,11 +3,7 @@
 	<%- include("./partials/head") %>
 <body>
 	<!-- Header -->
-	<% if (logeado == true) { %>
-		<%- include("./partials/headerLogueado") %>
-	<% } else { %> 
 		<%- include("./partials/header") %>
-	<% } %> 
 	
 	<!-- Header -->
 	<!-- Novedades -->
@@ -16,11 +12,18 @@
 			<div class="col-12">
 				<h2 class="products-title">Ingresar</h2>
 			</div>
+
 			<!-- Show the "ultimos" products -->
 			<article>
-				<form action="/user/profile" method="get"> <!-- ACA VA A IR A INDEX PERO TIENE QUE SER CON EL HEADER LOGEADO O NO-->
+				<p>
+					<% if (locals.errors) {%>
+						<p style="color: red"><%= errors.message%></p> 
+					<% } %>
+				</p>
+				
+				<form action="/user/login" method="POST"> <!-- ACA VA A IR A INDEX PERO TIENE QUE SER CON EL HEADER LOGEADO O NO-->
 					<div>
-					<input type="text" name="usuario" id="usuario" placeholder="Usuario">
+					<input type="email" name="email" id="email" placeholder="Email">
 					</div>
 					<br>
 

@@ -3,16 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+//Requerimos session
+var session = require('express-session');
 
 //
 var indexRouter = require('./routes/index'); 
 let userRouter = require("./routes/user")
-
-//let profileRouter = require('./routes/profile');
-//let registerRouter = require ('./routes/user');
 let productsRouter = require ('./routes/products');
-//let searchResultsRouter = require ('./routes/search-results');
-//let loginRouter = require ('./routes/login');
+
 
 var app = express();
 
@@ -26,13 +24,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Session
+app.use(session(
+  {
+    secret:'proyectoVinilo',
+    saveUninitialized: true,
+    resave: false
+  }
+));
+
 app.use('/', indexRouter);
 app.use('/user', userRouter);
-
-//app.use ('/profile', profileRouter);
-//app.use ('/register', registerRouter);
 app.use ('/products', productsRouter);
-//app.use ('/login', loginRouter );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

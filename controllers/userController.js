@@ -4,18 +4,8 @@ let bcrypt = require('bcryptjs');
 
 let userController = {
     register: function (req,res){
-       /*  let user = req.query.usuario;
-        let contr = req.query.contrasena;
-        console.log(user)
-
-        if (user == null && contr == null){
-            logeado = false
-        } else{
-            logeado = true
-        } */
         return res.render ('register',{
-            //logeado : logeado,
-            //informacion : db.lista
+
         })
     },
     profile: function (req,res){
@@ -30,19 +20,11 @@ let userController = {
         })
     },
     login: function (req,res){
-        let user = req.query.usuario;
-        let contr = req.query.contrasena;
-        console.log(user)
-
-        if (user == null && contr == null){
-            logeado = false
+        if (req.session.user != undefined){
+            return res.redirect ('/')
         } else{
-            logeado = true
+            return res.render ('login')
         }
-        return res.render ('login',{
-            logeado : logeado,
-            informacion : db.lista
-        })
     },store: function(req,res){
         let form = req.body
 
@@ -96,7 +78,47 @@ let userController = {
             })
              
     },processLogin: function(req,res){
+        //buscar los datos de la db 
+        let email = req.body.email;
+        let contrasena = req.body.contrasena
 
+        let busca = {
+            where : [{email : email}]
+        };
+
+        db.Usuario.findOne(busca)
+            //return res.send(busca)
+            .then(function(resultado){
+                let errors = {};
+                if (resultado != null){
+                    let contra = resultado.contrasena
+                    let contrasenaCorrecta = bcrypt.compareSync(contrasena, contra)
+                    if (contrasenaCorrecta == true){
+                        //lo pongo en session
+                        req.session.user = resultado
+
+                        if (req.body.recordarme != undefined){
+                            res.cookie('cookieEspecial', 'resultado.id', {maxAge: 100*60*15});
+                        }
+                        return res.redirect ('/')
+                    } else {
+                        errors.message = "El mail ya existe y no encontramos la contrasena";
+                        res.locals.errors = errors;
+                        return res.render ('login');
+                    } 
+                } else {
+                    errors.message = "No te estamos encontrando"
+                    res.locals.errors = errors;
+                    return res.render ('login')
+                }
+            
+            }) .catch(function(error){
+                console.log(error);
+            })
+
+        //ponerlos en session 
+
+        //y si el usuario quiere, agregar cookie para que lo recuerde 
     },logout: function(req,res){
 
     }    
