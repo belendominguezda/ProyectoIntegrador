@@ -94,7 +94,7 @@ let userController = {
                     let contra = resultado.contrasena
                     let contrasenaCorrecta = bcrypt.compareSync(contrasena, contra)
                     if (contrasenaCorrecta == true){
-                        //lo pongo en session
+                        //Lo pongo en session
                         req.session.user = resultado
 
                         if (req.body.recordarme != undefined){
@@ -115,12 +115,10 @@ let userController = {
             }) .catch(function(error){
                 console.log(error);
             })
-
-        //ponerlos en session 
-
-        //y si el usuario quiere, agregar cookie para que lo recuerde 
     },logout: function(req,res){
-
+        res.clearCookie('cookieEspecial');
+        return res.render('/');
     }    
 };
+
 module.exports = userController;
