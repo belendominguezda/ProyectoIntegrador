@@ -36,7 +36,6 @@ let indexController = {
                 {association: "usuario"},{association: "comentario"}
             ]
         }
-
         let busquedaDescripcion = {
             where: [
                 {descripcionProducto: {[op.like]: `%${formBusqueda}%`}}
@@ -48,7 +47,6 @@ let indexController = {
                 {association: "usuario"},{association: "comentario"}
             ]
         }
-
         db.Producto.findAll(busquedaNombre)
         .then(function(resultado){
             if (resultado.length != 0){
@@ -73,4 +71,5 @@ let indexController = {
 
     }
 }
+
 module.exports = indexController;

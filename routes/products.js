@@ -7,4 +7,7 @@ let productsController = require ('../controllers/productsController')
 router.get ('/', productsController.index)
 router.get ('/product-add', productsController.add)
 
+router.post ('/product-add', productsController.addForm)
+
+
 module.exports = router;
