@@ -117,8 +117,12 @@ let userController = {
                 console.log(error);
             })
     },logout: function(req,res){
-        res.clearCookie('cookieEspecial');
-        return res.render('/');
+        //Destruyo la session
+        req.session.destroy();
+        //Destruyo la cookie
+        res.clearCookie('cookieEspecial')
+
+        return res.redirect('/');
     }    
 };
 

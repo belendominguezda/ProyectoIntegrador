@@ -32,23 +32,21 @@
 					<li><a href="/products/product-add" class="navegacion">Cargar productos</a></li>
 				</ul>
 	
-				<% for (let i=0; i<informacion.length; i++){ %>
+
 				<ul class="right-navbar">
+					<% if (locals.user != undefined) {%>
+						<a href="/user/profile"> <%=locals.user.usuario%></a>
+						<% } %>
 					<li><a href="/user/profile" class="navegacion">
-							<%= informacion[i].usuario %> <i class="fas fa-user"></i>
+							<i class="fas fa-user"></i>
 						</a>
 					</li>
-				<% } %>
 					<li>
-						<form action="/" method="GET">
+						<form action="/user/logout" method="POST">
 							<button class="logout navegacion" type="submit">
 								Cerrar sesión <i class="fas fa-sign-in-alt"></i>
 							</button>
 						</form>
-					</li>
-					<!-- Solo deslogueado--> <li>
-						<a href="/user/register" class="navegacion">Creá tu cuenta <i class="far fa-address-card"></i>
-						</a>
 					</li>
 				</ul>
 			</nav>

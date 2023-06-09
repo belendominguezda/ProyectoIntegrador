@@ -3,9 +3,11 @@
 	<%- include("./partials/head") %>
 <body>
 	<!-- Header -->
-		<%- include("./partials/header") %>
+		
 		<% if (locals.user != undefined) {%>
-		<p>Bienvenido <%= locals.user.usuario%></p>
+		<%- include("./partials/headerLogueado") %>
+		<% } else { %>
+			<%- include("./partials/header") %>
 		<% } %>
 
 	<!-- Banner -->
