@@ -3,9 +3,8 @@
 	<%- include("./partials/head") %>
 <body>
 	<!-- Header -->
-		
 		<% if (locals.user != undefined) {%>
-		<%- include("./partials/headerLogueado") %>
+			<%- include("./partials/headerLogueado") %>
 		<% } else { %>
 			<%- include("./partials/header") %>
 		<% } %>
@@ -28,7 +27,7 @@
 				<section class="product-box">
 					<a href="/products">
 						<figure class="product-box_image">
-							<img src="/public/images/1.webp">
+							<img src="/images/1.webp">
 						</figure>
 						<article class="product-box_data">
 							<h2>Nombre%></h2>
@@ -54,7 +53,7 @@
 				<section class="product-box">
 					<a href="/products">
 						<figure class="product-box_image">
-								<img src="/public/images/10.webp" alt="foto vinilo">
+								<img src="/images/10.webp" alt="foto vinilo">
 						</figure>
 							<article class="product-box_data">
 								<h2>Informacion</h2>

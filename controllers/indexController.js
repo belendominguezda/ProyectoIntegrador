@@ -1,7 +1,6 @@
 let db = require('../database/models');
-
-//let db = require('../db/db');
-//let op = db.Sequelize.Op;
+let op = db.Sequelize.Op;
+let bcrypt = require('bcryptjs');
 
 let indexController = {
     index : function (req,res){
@@ -24,9 +23,54 @@ let indexController = {
             return res.render ('index')
     },
     search: function (req,res){
-        return res.render ('search-results',{
-            informacion : db.productos
+        let formBusqueda = req.query.search
+
+        let busquedaNombre = {
+            where: [
+                {nombreProducto: {[op.like]:  `%${formBusqueda}%`}}
+            ],
+            order: [
+                ['createdAt', 'ASC']
+            ],
+            include: [
+                {association: "usuario"},{association: "comentario"}
+            ]
+        }
+
+        let busquedaDescripcion = {
+            where: [
+                {descripcionProducto: {[op.like]: `%${formBusqueda}%`}}
+            ],
+            order: [
+                ['createdAt', 'ASC']
+            ],
+            include: [
+                {association: "usuario"},{association: "comentario"}
+            ]
+        }
+
+        db.Producto.findAll(busquedaNombre)
+        .then(function(resultado){
+            if (resultado.length != 0){
+                res.render('search-results', {info: resultado});
+            } else {
+                db.Producto.findAll(busquedaDescripcion)
+                .then (function(resultado2){
+                    if (resultado2.lenght != 0){
+                        res.render, ('search-results', {info: resultado2}); 
+                    } else {
+                        res.send ("Lo sentimos, no hemos encontrado resultados a su busqueda :(")
+                    }
+                })
+                .catch(function(error){
+                    console.log(error)
+                })
+            }
         })
+
+    },
+    searchUser: function (req,res){
+
     }
-};
+}
 module.exports = indexController;

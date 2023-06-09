@@ -3,15 +3,18 @@
 	<%- include("./partials/head") %>
 <body>
 	<!-- Header -->
-	<%- include("./partials/header") %> 
-	<!-- /Header -->
+	<% if (locals.user != undefined) {%>
+		<%- include("./partials/headerLogueado") %>
+	<% } else { %>
+		<%- include("./partials/header") %>
+	<% } %>
 	<!-- product detail -->
 	<div class="container products-wrapper">
 
 		<% for( let i = 0; i < 1 ; i++ ) { %>
 
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"> <%=informacion[i].nombreDelProducto%>
+			<h2 class="products-title"> Nombre del producto //
 				</h2> 
 			<p class="product-detail-description">
 				<a href="/products/product-add">Editar</a>
@@ -21,19 +24,19 @@
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="<%=informacion[i].imagen%>" alt="" class="product-detail-img">
+					<img src="/images/1.webp" alt="" class="product-detail-img">
 					<p class="product-detail-description">
-						<%=informacion[i].descripcion%>
+						Descripcion
 					</p>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
 						<article>
-							<img src="<%= informacionUsuario[i].fotoPerfil%>" alt="">
+							<img src="/images/1.webp" alt="">
 							<div class="data">
 								<p class="user">
-								<strong> <a href="/profile"><%= informacionUsuario[i].usuario%> </a> </strong>
-								<%= informacionUsuario[i].comentario%> </p>
+								<strong> <a href="/profile">Info usuario </a> </strong>
+								Comentario </p>
 							</div>
 						</article>
 					</section>

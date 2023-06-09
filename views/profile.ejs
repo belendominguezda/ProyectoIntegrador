@@ -3,22 +3,23 @@
 	<%- include("./partials/head") %>
 <body>
 	<!-- Header -->
-	<%- include("./partials/headerLogueado") %> 
-	<!-- /Header -->
+	<% if (locals.user != undefined) {%>
+		<%- include("./partials/headerLogueado") %>
+	<% } else { %>
+		<%- include("./partials/header") %>
+	<% } %>
 
 	<!-- Datos del usuario -->
 	<section class="info-usuario container products-wrapper">
 		<div class="row">
 
-		<% for (let i=0; i<informacion.length;i++){ %>
-
 			<div class="img-container offset-3 col-2">
-				<img src="<%= informacion[i].fotoPerfil%>" alt="foto de perfil" class="foto-perfil">
+				<img src="/images/juanPerez.jpg" alt="foto de perfil" class="foto-perfil">
 			</div>
 
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<h1 class="main-title"><%= informacion[i].usuario %> 
+					<h1 class="main-title">Usuario //%> 
 						<a href="/user/profile/profile-edit">
 							<i class="fas fa-cog"  style="color:#c3124a;"></i>
 						</a>
@@ -33,7 +34,6 @@
 					</ul>
 				</div>
 			</div>
-		<% } %>
 		</div>
 	</section>
 	<!-- /Datos del usuario -->
@@ -46,23 +46,21 @@
 			</div>
 			<!-- Show mis productos -->
 
-			<% for (let i=6; i<10;i++){ %>
 
 				<div class="col-12 col-sm-6 col-lg-3">
 					<section class="product-box">
 						<a href="/products">
 							<figure class="product-box_image">
-								<img src="<%=informacionProductos[i].imagen %>" alt="<%=informacionProductos[i].nombreDelProducto%>">
+								<img src="/images/1.webp%>" alt="Nombre del producto //">
 							</figure>
 							<article class="product-box_data">
-								<h2><%=informacionProductos[i].nombreDelProducto %></h2>
-								<p><%=informacionProductos[i].descripcion %></p>
-								<p>Comentarios: <%=informacionProductos[i].comentarios%></p>
+								<h2>Nombre del producto //</h2>
+								<p>Descripcion //</p>
+								<p>Comentarios: //</p>
 							</article>
 							</a>
 					</section>
 				</div>
-				<% } %>
 		</div>
 	</div>
 	<!-- /Mis productos -->
