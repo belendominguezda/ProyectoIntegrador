@@ -5,11 +5,38 @@ let bcrypt = require('bcryptjs');
 let userController = {
     register: function (req,res){
         return res.render ('register',{
-
         })
     },
     profile: function (req,res){
-        return res.render ('profile')
+        let idUsuario = req.params.id
+
+        db.Usuario.findByPk (idUsuario, {
+            include: [
+                {association: "productos"}
+                ],
+                order: [
+                    ['createdAt', 'ASC']
+                ]
+        })
+        .then(function(resultado){
+            if (resultado != undefined){
+                //return res.send(resultado)
+                if (resultado.productos == null){
+                    let errors = {}
+                    errors.message = "El email está vacío";
+                    res.locals.errors = errors;
+                }
+                return res.render('profile', {usuario : resultado})
+                
+            } else {
+                return res.send ("Lo sentimos, no encontramos al usuario")
+            }
+            
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+
     },
     edit: function(req,res){
         return res.render ('profile-edit',{

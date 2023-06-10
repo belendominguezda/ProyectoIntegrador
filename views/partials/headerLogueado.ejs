@@ -33,9 +33,9 @@
 				</ul>
 	
 
-				<ul class="right-navbar">
+				<ul class="right-navbar"> 
 					<% if (locals.user != undefined) {%>
-						<a href="/user/profile"> <%=locals.user.usuario%></a>
+						<a href="/user/profile/<%=locals.user.id %>"> <%=locals.user.usuario%></a> <!-- El nombre del usuario-->
 						<% } %>
 					<li><a href="/user/profile" class="navegacion">
 							<i class="fas fa-user"></i>
