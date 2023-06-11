@@ -5,7 +5,7 @@ let userController = require ('../controllers/userController')
 //Rutas
 router.get ('/register', userController.register);
 router.get ('/profile/:id', userController.profile);
-router.get ('/profile/profile-edit', userController.edit);
+router.get ('/profile/:id/profile-edit', userController.edit);
 router.get ('/login', userController.login);
 
 router.post('/register', userController.store); //guarda al usuario en la DB

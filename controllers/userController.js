@@ -21,13 +21,16 @@ let userController = {
         .then(function(resultado){
             if (resultado != undefined){
                 //return res.send(resultado)
-                if (resultado.productos == null){
+                 if (resultado.productos.length == 0){
                     let errors = {}
-                    errors.message = "El email está vacío";
+                    errors.message = "El usuario no ha publicado productos";
                     res.locals.errors = errors;
+                    return res.render('profile', {usuario : resultado})
+
+                } else{
+                    productos = resultado.productos
+                    return res.render('profile', {usuario : resultado, productos : productos}) 
                 }
-                return res.render('profile', {usuario : resultado})
-                
             } else {
                 return res.send ("Lo sentimos, no encontramos al usuario")
             }

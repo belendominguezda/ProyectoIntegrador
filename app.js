@@ -36,6 +36,8 @@ app.use(session(
 app.use(function(req,res,next){
   if (req.session.user != undefined) {
 		res.locals.user = req.session.user
+    res.locals.sessionId = req.sessionID; // Agregar el ID de sesión a res.locals
+
     return next();
      }
 return next();
