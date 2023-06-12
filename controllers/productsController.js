@@ -5,16 +5,36 @@ let bcrypt = require('bcryptjs');
 
 let productsController = {
     index: function (req,res){
-        return res.render ('products',{})
+        let idProducto = req.params.id
+        db.Producto.findByPk (idProducto, {
+            include: [
+                {association: "usuario"}, {association: "comentario"}
+            ]
+        })
+        .then(function(resultado){ //resultado devuelve la informacion con la db que coincide con el id del producto
+            //return res.send(resultado.comentario)
+            comentario = resultado.comentario
+            return res.render ('products', {resultado: resultado, comentario : comentario})
+
+        })
+        .catch(function(error){
+            console.log(error);
+        })
     },
     add : function(req,res){
-        return res.render ('product-add')
+        if (req.session.user) {
+            return res.render("product-add")
+        } else {
+            return res.redirect("/user/login")
+        }
+
+        //return res.render ('product-add')
     },
     addForm: function(req,res){
         let form = req.body
 
         let producto = {
-            usuario_id : form.usuario_id,
+            usuario_id : req.session.user.id,
             nombreProducto : form.nombreProducto,
             descripcionProducto : form.descripcionProducto,
             imagenProducto : form.imagenProducto,
@@ -24,7 +44,11 @@ let productsController = {
         db.Producto.create(producto)
         .then(function(resultado){
             //return res.send(resultado)
-            return res.redirect('/index')
+            if (req.session.user != undefined){
+                return res.redirect('/index')
+            } else {
+                return res.redirect('/user/login')
+            }
         })
 
     }

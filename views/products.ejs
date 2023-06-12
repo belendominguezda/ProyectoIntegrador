@@ -14,31 +14,46 @@
 		<% for( let i = 0; i < 1 ; i++ ) { %>
 
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"> Nombre del producto //
+			<h2 class="products-title"> <%= resultado.nombreProducto %>
 				</h2> 
 			<p class="product-detail-description">
-				<a href="/products/product-add">Editar</a>
+				<% if (resultado.usuario_id) {%>
+				<% } else if (locals.user.id == resultado.usuario_id) {%>	
+					<a href="/products/product-add">Editar</a>
+				<% } %>
 			</p>
 		</div>
 
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="/images/1.webp" alt="" class="product-detail-img">
+					<img src="<%-resultado.imagenProducto %>" alt="" class="product-detail-img">
 					<p class="product-detail-description">
-						Descripcion
+						<strong> <a href="/user/profile/<%=resultado.usuario.id%>">@<%= resultado.usuario.usuario %> </a> </strong> <br><br>
+						Descripcion: <br> <%= resultado.descripcionProducto %>
+						<br>
 					</p>
 				</article>
+				
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<article>
-							<img src="/images/1.webp" alt="">
+					<% for (let i=0; i < comentario.length; i++){  %>
+						<% if (comentario[i].length == 0) {%>
 							<div class="data">
 								<p class="user">
-								<strong> <a href="/profile">Info usuario </a> </strong>
-								Comentario </p>
+								<strong> No hay comentarios </strong></p>
+							</div>
+
+						<% } else{ %>
+						<article>
+							<div class="data">
+								<p class="user">
+								<strong> <a href="/user/profile/<%=comentario[i].id%>"> <%=comentario[i].comentario %>  </a> </strong></p>
 							</div>
 						</article>
+						<% } %>
+					<% } %>
+
 					</section>
 					<form class="form" action="" method="POST">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">

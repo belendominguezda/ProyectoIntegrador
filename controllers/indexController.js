@@ -14,7 +14,6 @@ let indexController = {
         })
             .then(function(productoAll){
                 //return res.send (productoAll)
-
                 return res.render ('index' , {info : productoAll})
 
             })

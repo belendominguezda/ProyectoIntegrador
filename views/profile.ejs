@@ -18,16 +18,20 @@
 
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<% if (locals.user.id == usuario.id) {%>
+					<% if (usuario.id) {%>
 					<h1 class="main-title"><%=usuario.usuario %> 
+						</h1>
+						<% if (usuario.id) { %>
+							<a class="btn mt-3 ml-4" href="/user/login">SEGUIR</a>
+						<% } else if (locals.user.id != usuario.id) {%>
+							<a class="btn mt-3 ml-4" href="">SEGUIR</a>
+						<% } %>	
+
+					</h1>
+					<% } else if (locals.user.id == usuario.id) {%>
 						<a href="/user/profile/:id/profile-edit">
 							<i class="fas fa-cog"  style="color:#c3124a;"></i>
 						</a>
-					</h1>
-					<% } else {%>
-					<h1 class="main-title"><%=usuario.usuario %> 
-					</h1>
-					<a class="btn mt-3 ml-4" href="">SEGUIR</a>
 					<% } %>	
 				</div>
 				<div>
