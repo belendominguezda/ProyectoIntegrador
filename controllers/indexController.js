@@ -4,23 +4,19 @@ let bcrypt = require('bcryptjs');
 
 let indexController = {
     index : function (req,res){
-    // return res.render ('index', {
-    //     informacion : db.productos
-    // }) 
+        db.Producto.findAll({
+            include: [
+                {association: "usuario"}, {association: "comentario"}
+            ]
+        })
+            .then(function(productoAll){
+                //return res.send (productoAll)
+                return res.render ('index')
 
-    let rel = {
-        include: [
-            {association: "usuario"}
-        ]
-    }
-        db.Producto.findAll(rel)
-            .then(function(usuarioAll){
-                //return res.send (usuarioAll)
             })
             .catch( function(error){
                 console.log(error);
             })
-            return res.render ('index')
     },
     search: function (req,res){
         let formBusqueda = req.query.search

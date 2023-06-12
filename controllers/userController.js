@@ -70,7 +70,11 @@ let userController = {
             .then (function(resultado){
                 let errors = {};
             if (email == ""){
-                errors.message = "El email está vacío";
+                errors.message = "El campo de email es obligatorio";
+                res.locals.errors = errors;
+                return res.render ('register');
+            } else if (contrasena == ""){
+                errors.message = "El campo de la clave es obligatorio"
                 res.locals.errors = errors;
                 return res.render ('register');
             } else if (contrasena.length < 3){
@@ -132,12 +136,12 @@ let userController = {
                         }
                         return res.redirect ('/')
                     } else {
-                        errors.message = "El mail ya existe y no encontramos la contrasena";
+                        errors.message = "El email es correcto, pero no encontramos la contrasena";
                         res.locals.errors = errors;
                         return res.render ('login');
                     } 
                 } else {
-                    errors.message = "No te estamos encontrando"
+                    errors.message = "No te encontramos :("
                     res.locals.errors = errors;
                     return res.render ('login')
                 }

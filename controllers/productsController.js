@@ -1,12 +1,11 @@
-let db = require('../db/db')
+//let db = require('../db/db')
+let db = require('../database/models');
+let op = db.Sequelize.Op;
+let bcrypt = require('bcryptjs');
 
 let productsController = {
     index: function (req,res){
-
-        return res.render ('products',{
-            informacion : db.productos,
-            informacionUsuario : db.lista
-        })
+        return res.render ('products',{})
     },
     add : function(req,res){
         return res.render ('product-add')
