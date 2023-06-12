@@ -14,14 +14,17 @@ let productsController = {
         let form = req.body
 
         let producto = {
+            usuario_id : form.usuario_id,
             nombreProducto : form.nombreProducto,
             descripcionProducto : form.descripcionProducto,
+            imagenProducto : form.imagenProducto,
             fechaCarga : form.fechaCarga
         }
 
         db.Producto.create(producto)
         .then(function(resultado){
-            return res.redirect('/user/profile')
+            //return res.send(resultado)
+            return res.redirect('/index')
         })
 
     }
