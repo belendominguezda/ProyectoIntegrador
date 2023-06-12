@@ -25,6 +25,8 @@
 						</a>
 					</h1>
 					<% } else {%>
+					<h1 class="main-title"><%=usuario.usuario %> 
+					</h1>
 					<a class="btn mt-3 ml-4" href="">SEGUIR</a>
 					<% } %>	
 				</div>
@@ -59,7 +61,7 @@
 					<section class="product-box">
 						<a href="/products">
 							<figure class="product-box_image">
-								<img src="/images/1.webp%>" alt="Nombre del producto //">
+								<img src="<%-productos[i].imagenProducto%>" alt="Nombre del producto //">
 							</figure>
 							<article class="product-box_data">
 								<h2><%=productos[i].nombreProducto %></h2>

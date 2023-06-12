@@ -7,11 +7,15 @@ let indexController = {
         db.Producto.findAll({
             include: [
                 {association: "usuario"}, {association: "comentario"}
+            ],
+            order: [
+                ['createdAt' , 'DESC']
             ]
         })
             .then(function(productoAll){
                 //return res.send (productoAll)
-                return res.render ('index')
+
+                return res.render ('index' , {info : productoAll})
 
             })
             .catch( function(error){
