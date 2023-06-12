@@ -24,6 +24,9 @@ module.exports = function(sequelize,DataTypes){
         dni: {
             type: DataTypes.INTEGER
         },
+        imagenPerfil : {
+            type: DataTypes.STRING
+        },
         createdAt:{
             type: DataTypes.DATE
         },

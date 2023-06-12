@@ -59,7 +59,8 @@ let userController = {
             usuario = form.usuario;
             contrasena = form.contrasena;
             fechaNacimiento = form.fechaNacimiento;
-            documento = form.documento;
+            dni = form.dni;
+            imagenPerfil = form.imagenPerfil;
 
         //Mandar mensaje de los errores
         let buscaEmail = {
@@ -91,12 +92,13 @@ let userController = {
                     usuario : form.usuario,
                     contrasena: bcrypt.hashSync(contrasena, 10),
                     fechaNacimiento : form.fechaNacimiento,
-                    documento : form.documento,
-                    //FOTO DE PERFIL
+                    dni : form.dni,
+                    imagenPerfil : form.imagenPerfil,
                 }
                 db.Usuario.create(user)
                 .then(function(resultado){
-                    return res.redirect ('/user/profile');
+                    //return res.redirect ('/');
+                    return res.redirect('/user/login')
                 })
                 .catch(function(error){
                     console.log(error);

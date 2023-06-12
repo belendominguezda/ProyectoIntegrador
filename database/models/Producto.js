@@ -24,6 +24,9 @@ module.exports = function(sequelize,DataTypes){
         comentarios: {
             type: DataTypes.INTEGER
         },
+        imagenProducto: {
+            type: DataTypes.STRING
+        },
         createdAt:{
             type: DataTypes.DATE
         },
