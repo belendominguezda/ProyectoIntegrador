@@ -12,7 +12,7 @@ let productsController = {
             ]
         })
         .then(function(resultado){ //resultado devuelve la informacion con la db que coincide con el id del producto
-            //return res.send(resultado.comentario)
+            //return res.send(resultado)
             comentario = resultado.comentario
             return res.render ('products', {resultado: resultado, comentario : comentario})
 
@@ -51,6 +51,36 @@ let productsController = {
             }
         })
 
+    }, eliminarProducto: function(req,res) {
+        let idProducto = req.params.id;
+        let userId = req.session.user.id
+
+        if (req.session.user != undefined){
+            db.Producto.findByPk(idProducto, {
+                include: [{association: 'usuario'}]
+            })
+            .then(function(resultado){
+                if (resultado.usuario.id != req.session.user.id){ //NO SE SI ESTA BUEN RESULTADO.USUARIO.ID
+                    return res.send("No puedes eliminar este posteo")
+                } else {
+                    db.Producto.destroy({
+                        where: {
+                            id : idProducto
+                        },
+                        force : true
+                    })
+                    .then(function(resultado){
+                        return res.redirect("/user/profile/" + userId)
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+                }
+            })
+        } else {
+            return res.redirect('/users/login')
+        }
+       
     }
 };
 

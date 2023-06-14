@@ -7,7 +7,9 @@ let productsController = require ('../controllers/productsController')
 router.get ('/:id', productsController.index)
 router.get ('/product-add', productsController.add)
 
-router.post ('/product-add', productsController.addForm)
+router.post ('/product-add', productsController.addForm) //Ruta para agregar un producto
+router.post("/:id", productsController.eliminarProducto); //Ruta para eliminar un producto
+
 
 
 module.exports = router;

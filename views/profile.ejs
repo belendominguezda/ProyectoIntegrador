@@ -18,21 +18,20 @@
 
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<% if (usuario.id) {%>
-					<h1 class="main-title"><%=usuario.usuario %> 
-						</h1>
-						<% if (usuario.id) { %>
-							<a class="btn mt-3 ml-4" href="/user/login">SEGUIR</a>
-						<% } else if (locals.user.id != usuario.id) {%>
+				<h1 class="main-title"><%=usuario.usuario %> 
+				</h1>
+				<% if (locals.user) { %>
+					<% if (locals.user.id != usuario.id) {%>
 							<a class="btn mt-3 ml-4" href="">SEGUIR</a>
-						<% } %>	
-
 					</h1>
 					<% } else if (locals.user.id == usuario.id) {%>
-						<a href="/user/profile/:id/profile-edit">
+						<a class="btn mt-3 ml-4" href="/user/profile/<%=usuario.id%>/profile-edit"> Editar mi perfil
 							<i class="fas fa-cog"  style="color:#c3124a;"></i>
 						</a>
 					<% } %>	
+				<% } else { %>
+					<a class="btn mt-3 ml-4" href="/user/login" >Debes logearte para seguirl@</a>
+				<% } %>
 				</div>
 				<div>
 					<ul class="">
@@ -63,14 +62,14 @@
 					<% for (let i = 0; i <productos.length; i++) { %>
 
 					<section class="product-box">
-						<a href="/products">
+						<a href="/products/<%= productos[i].id %>">
 							<figure class="product-box_image">
 								<img src="<%-productos[i].imagenProducto%>" alt="Nombre del producto //">
 							</figure>
 							<article class="product-box_data">
 								<h2><%=productos[i].nombreProducto %></h2>
 								<p><%=productos[i].descripcionProducto %></p>
-								<p><%=productos[i].comentarios %></p>
+								<p>Comentarios: <%=productos[i].comentario %></p>
 							</article>
 							</a>
 					</section>

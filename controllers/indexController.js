@@ -48,6 +48,7 @@ let indexController = {
     
             })
                 .then(function(resultado){
+                    //return res.send(resultado)
                     if (resultado.length > 0){
                         res.render('search-results', {info: resultado});
                     } else {

@@ -34,11 +34,7 @@
 						<article class="product-box_data">
 							<h2><%= info[i].nombreProducto%></h2>
 							<p><%= info[i].descripcionProducto%></p>
-							<% if (info[i].comentarios == null){ %>
-								<p>No tiene comentarios</p>
-							<% } else{ %>
 							<p>Comentarios : <%= info[i].comentario.length%></p>
-							<% } %>
 							<p>Publicado por <a href="/user/profile/<%=info[i].usuario.id%>"><%= info[i].usuario.usuario%></a></p>
 						</article>
 						</a>

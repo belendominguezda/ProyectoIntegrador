@@ -17,10 +17,12 @@
 			<h2 class="products-title"> <%= resultado.nombreProducto %>
 				</h2> 
 			<p class="product-detail-description">
-				<% if (resultado.usuario_id) {%>
-				<% } else if (locals.user.id == resultado.usuario_id) {%>	
+			<% if (locals.user) {%>
+				<% if (locals.user.id == resultado.usuario_id) {%>	
 					<a href="/products/product-add">Editar</a>
+					<form action="/products/<%=resultado.id %>" method="post"><button type="submit">Eliminar el producto</button></form>
 				<% } %>
+			<% } %>
 			</p>
 		</div>
 
@@ -29,7 +31,7 @@
 				<article class="col-12 col-lg-8 product-detail-info">
 					<img src="<%-resultado.imagenProducto %>" alt="" class="product-detail-img">
 					<p class="product-detail-description">
-						<strong> <a href="/user/profile/<%=resultado.usuario.id%>">@<%= resultado.usuario.usuario %> </a> </strong> <br><br>
+						Publicación de <strong> <a href="/user/profile/<%=resultado.usuario.id%>">@<%= resultado.usuario.usuario %> </a> </strong> <br><br>
 						Descripcion: <br> <%= resultado.descripcionProducto %>
 						<br>
 					</p>
@@ -37,11 +39,9 @@
 				
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-					<% for (let i=0; i < comentario.length; i++){  %>
-						<% if (comentario[i].length == 0) {%>
+						<% if (resultado.comentario.length == 0) {%>
 							<div class="data">
-								<p class="user">
-								<strong> No hay comentarios </strong></p>
+								<p class="user"> <strong> No hay comentarios </strong></p>
 							</div>
 
 						<% } else{ %>
@@ -52,7 +52,6 @@
 							</div>
 						</article>
 						<% } %>
-					<% } %>
 
 					</section>
 					<form class="form" action="" method="POST">
