@@ -18,7 +18,7 @@
 				<form action="/user/register" method="POST"> <!-- ACA VA A IR A INDEX PERO TIENE QUE SER CON EL HEADER LOGEADO-->
 					<div>
 						<% if (locals.errors) {%>
-							<p style="color: red"><%= errors.message%></p> 
+							<p class = "errorsMessage"><%= errors.message%></p> 
 						<% } %>
 					</div>
 					<div>

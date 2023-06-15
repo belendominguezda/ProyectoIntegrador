@@ -52,7 +52,10 @@ let indexController = {
                     if (resultado.length > 0){
                         res.render('search-results', {info: resultado});
                     } else {
-                        res.send("No encontramos resultados a su busqueda")
+                        errors = {}
+                        errors.message = "No encontramos resultados a su busqueda";
+                        res.locals.errors = errors;
+                        return res.render ('index', {info: resultado});
                     }
                 })
 

@@ -136,15 +136,23 @@ let userController = {
                         }
                         return res.redirect ('/')
                     } else {
-                        errors.message = "El email es correcto, pero no encontramos la contrasena";
+                        errors.message = "La contraseña es incorrecta";
                         res.locals.errors = errors;
                         return res.render ('login');
                     } 
-                } else {
+                } else if (email == null) {
+                    errors.message = "El campo de email es obligatorio";
+                    res.locals.errors = errors;
+                    return res.render ('login')
+                } else if (contrasena == null){
+                    errors.message = "El campo de email es obligatorio";
+                    res.locals.errors = errors;
+                    return res.render ('login')
+                }  else {
                     errors.message = "No te encontramos :("
                     res.locals.errors = errors;
                     return res.render ('login')
-                }
+                } 
             
             }) .catch(function(error){
                 console.log(error);

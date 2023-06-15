@@ -19,7 +19,7 @@
 			<p class="product-detail-description">
 			<% if (locals.user) {%>
 				<% if (locals.user.id == resultado.usuario_id) {%>	
-					<a href="/products/product-add">Editar</a>
+					<a href="/products/product-edit/<%=resultado.id%>">Editar</a> <!-- ACA HAY QUE PONER LA RUTA DE PRODUCT EDIT (OSEA )-->
 					<form action="/products/<%=resultado.id %>" method="post"><button type="submit">Eliminar el producto</button></form>
 				<% } %>
 			<% } %>

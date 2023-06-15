@@ -10,6 +10,11 @@
 		<% } %>
 
 	<!-- Banner -->
+	<p>
+		<% if (locals.errors) {%>
+			<p class="errorsMessage" style="color: red"><%= errors.message%></p> 
+		<% } %>
+	</p>
 	<div class="banner">
 		<img src="./images/BANNER.png" alt="Banner de ofertas">
 	</div>
@@ -43,34 +48,6 @@
 		<%} %>
 		</div>
 	</div>
-
-	<!-- /Novedades -->
-	<!-- Más comentados -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Más comentados</h2>
-			</div>
-			<!-- Show the "ultimos" products -->
-
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/products">
-						<figure class="product-box_image">
-								<img src="/images/10.webp" alt="foto vinilo">
-						</figure>
-							<article class="product-box_data">
-								<h2>Informacion</h2>
-								<p>Descripcion</p>
-								<p>Comentarios:</p>
-							</article>
-							</a>
-					</a>
-				</section>
-			</div>
-		</div>
-	</div>
-	<!-- /Más comentados -->
 
 	<!-- footer -->
 	<%- include('./partials/footer') %>

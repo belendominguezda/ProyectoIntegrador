@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+	<%- include("./partials/head") %>
+<body>
+	<!-- Header -->
+	<% if (locals.user != undefined) {%>
+		<%- include("./partials/headerLogueado") %>
+	<% } else { %>
+		<%- include("./partials/header") %>
+	<% } %>
+
+	<!-- Novedades -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Editar producto</h2>
+			</div>
+			<!-- Show the "ultimos" products -->
+			<h2 class="col-12"></h2>
+			<div>
+				<article>
+					<form action="/products/product-edit/<%= resultado.id %>" method="POST">
+						<div>
+							<input type="text" name="nombreProducto" value="" placeholder="Nombre del producto">
+						</div>
+						<br>
+						<div>
+							<input type="text" name="descripcionProducto" value="" placeholder="Descripción del producto">
+						</div>
+						<br>
+						<div>
+							<input type="text" name="imagenProducto" value="" placeholder="Link a la imagen del producto">
+						</div>
+						<br>
+						<div>
+							<input type="date" name="fechaCarga" value="">
+						</div>
+						<br>
+						<div>
+							<button type="submit">Agregar</button>
+						</div>
+					</form>
+				</article>
+			</div>
+
+
+	<!-- footer -->
+	<%- include('./partials/footer') %>
+	<!-- /footer -->
+</body>
+
+</html>

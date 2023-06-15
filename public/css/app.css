@@ -485,6 +485,12 @@ textarea.form-input {
   color: #fff;
 }
 
+.errorsMessage {
+  color: red;
+  font-size: 15px;
+  margin: 6px;
+}
+
 
 /*====== Media-Queries ======*/
 @media (min-width: 768px) {
