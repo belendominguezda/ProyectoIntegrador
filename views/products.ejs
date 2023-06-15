@@ -11,7 +11,7 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 
-		<% for( let i = 0; i < 1 ; i++ ) { %>
+
 
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"> <%= resultado.nombreProducto %>
@@ -19,8 +19,8 @@
 			<p class="product-detail-description">
 			<% if (locals.user) {%>
 				<% if (locals.user.id == resultado.usuario_id) {%>	
-					<a href="/products/product-edit/<%=resultado.id%>">Editar</a> <!-- ACA HAY QUE PONER LA RUTA DE PRODUCT EDIT (OSEA )-->
-					<form action="/products/<%=resultado.id %>" method="post"><button type="submit">Eliminar el producto</button></form>
+					<a href="/products/product-edit/<%=resultado.id%>">Editar</a>
+					<form  action="/products/<%=resultado.id %>" method="post"><button class="eliminar-button" type="submit">Eliminar el producto</button></form>
 				<% } %>
 			<% } %>
 			</p>
@@ -36,9 +36,11 @@
 						<br>
 					</p>
 				</article>
-				
 				<div class="col-12 col-lg-4">
 					<section class="comments">
+						<strong><p class="user">Comentarios</p></strong>
+					<% for( let i = 0; i < comentario.length ; i++ ) { %>
+
 						<% if (resultado.comentario.length == 0) {%>
 							<div class="data">
 								<p class="user"> <strong> No hay comentarios </strong></p>
@@ -46,23 +48,33 @@
 
 						<% } else{ %>
 						<article>
+							<img src="<%- comentario[i].usuario.imagenPerfil %>" alt="">
 							<div class="data">
 								<p class="user">
-								<strong> <a href="/user/profile/<%=comentario[i].id%>"> <%=comentario[i].comentario %>  </a> </strong></p>
+								<strong> <a href="/user/profile/<%=comentario[i].usuario.id%>"><%=comentario[i].usuario.usuario %></a> </strong>
+								<%=comentario[i].comentario %></p>
 							</div>
 						</article>
 						<% } %>
+					<% } %>
 
 					</section>
-					<form class="form" action="" method="POST">
-						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
+					<% if (locals.user) { %>
+
+					<form class="form" action="/products/comentario/<%=resultado.id%>" method="POST">
+						<input class="form-input" type="text" name="comentario" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>
+
+					<% } else { %>
+						<p class="form" text="big">Debe estar logeado para comentar</p>
+						<% } %>
+
 					<hr>
 				</div>
+			
 			</div>
 		</div>
-		<% } %>
 	</div>
 	<!-- /product detail -->
 

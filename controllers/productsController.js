@@ -1,17 +1,18 @@
 let db = require('../database/models');
 let op = db.Sequelize.Op;
 let bcrypt = require('bcryptjs');
+const session = require('express-session');
 
 let productsController = {
     index: function (req,res){
         let idProducto = req.params.id
         db.Producto.findByPk (idProducto, {
             include: [
-                {association: "usuario"}, {association: "comentario"}
+                {association: "usuario"}, {association: "comentario", include: [{association: "usuario"}]}
             ]
         })
         .then(function(resultado){ //resultado devuelve la informacion con la db que coincide con el id del producto
-            //return res.send(resultado)
+            //return res.send(resultado.comentario)
             comentario = resultado.comentario
             return res.render ('products', {resultado: resultado, comentario : comentario})
 
@@ -109,25 +110,6 @@ let productsController = {
 
     }, editarProducto: function(req,res){ //este metodo corresponde a la edicion de productos que viaja por POST
         let idProducto = req.params.id;
-        /* let nombreProducto = req.body.nombreProducto;
-        let descripcionProducto = req.body.descripcionProducto;
-        let imagenProducto = req.body.imagenProducto;
-
-        db.Producto.update({
-            nombreProducto: nombreProducto,
-            descripcionProducto: descripcionProducto,
-            imagenProducto: imagenProducto
-        }, {
-            where: {
-                id: id
-            }
-        })
-            .then(function () {
-                res.redirect("/product/" + id)
-            })
-            .catch(function (err) {
-                res.send(err)
-            }) */
 
         if (req.session.user != undefined){
             db.Producto.findByPk(idProducto, {
@@ -178,6 +160,40 @@ let productsController = {
         })
 
         } 
+    }, comentario: function(req,res){
+        let errors = {}
+
+        if (req.session.user != undefined){
+            let idProducto = req.params.id;
+            let form = req.body
+
+            let usuario_id = req.session.user.id;
+            let comentario = req.body.comentario
+
+            if (form.comentario == ""){
+                errors.message = "El comentario esta vacío";
+                res.locals.errors = errors;
+                res.render('products')
+            } else {
+                let coment = {
+                    usuario_id : usuario_id,
+                    productos_id : idProducto,
+                    comentario : comentario,
+
+                }
+                db.Comentario.create(coment, {
+                    order: [
+                        ['createdAt', 'DESC']
+                    ]
+                })
+                .then(function(resultado){
+                    return res.redirect ("/products/" + idProducto)
+                })
+            }
+
+        } else {
+            return res.redirect("/user/login")
+        }
     }
 };
 
