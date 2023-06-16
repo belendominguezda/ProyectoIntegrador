@@ -164,7 +164,103 @@ let userController = {
         res.clearCookie('cookieEspecial')
 
         return res.redirect('/');
-    }    
+
+    }, editar: function(req,res){
+        if (req.session.user != undefined){
+            let idUsuario = req.params.id
+
+            db.Usuario.findByPk(idUsuario) 
+            .then(function(resultado) {
+                if (resultado != undefined) {
+                    //return res.send (resultado)
+                    if (resultado.id != req.session.user.id) {
+                        return res.send("No puedes editar este perfil")
+                    } else {
+                        return res.render('profile-edit', { resultado: resultado })
+                    }
+                } else {
+                    return res.send("No existe el usuario")
+                }
+            })
+            .catch(function(error) {
+                return res.send(error)
+            })
+            
+        } else {
+            return res.redirect('/user/login')
+        }
+
+
+    }, editarUsuario: function(req,res){
+        let idUsuario = req.params.id;
+        let errors = {};
+
+        if (req.session.user != undefined){
+            db.Usuario.findByPk(idUsuario) 
+            .then(function(resultado) {
+                if (resultado != undefined) {
+                    //return res.send (resultado)
+                    if (resultado.id != req.session.user.id) {
+                        return res.send("No puedes editar este perfil")
+                    } else {
+                        let form = req.body
+                        
+                        let usuarioEdit = {
+                            usuario_id : req.session.user.id,
+                            email : form.email,
+                            usuario : form.usuario,
+                            contrasena : form.contrasena,
+                            fechaNacimiento : form.fechaNacimiento,
+                            dni : form.dni,
+                            imagenPerfil : form.imagenPerfil
+                        }
+
+                        if (form.email == ""){
+                            usuarioEdit.email = resultado.email
+                        }
+                        if (form.usuario == ""){
+                            usuarioEdit.usuario = resultado.usuario
+                        }
+                        if (form.contrasena == ""){
+                            usuarioEdit.contrasena = resultado.contrasena
+                        }
+                        if (form.fechaNacimiento == ""){
+                            usuarioEdit.fechaNacimiento = resultado.fechaNacimiento
+                        }
+                        if (form.dni == ""){
+                            usuarioEdit.dni = resultado.dni
+                        }
+                        if (form.imagenPerfil == ""){
+                            usuarioEdit.imagenPerfil = resultado.imagenPerfil
+                        }
+                        if(form.contrasena.length > 0 && form.contrasena.length < 3){
+                            errors.message = "La contraseña debe tener más de 3 caracteres."
+                            res.locals.errors = errors;
+                            return res.render('profile-edit', {resultado: resultado})
+
+                        }                    
+
+                        db.Usuario.update(usuarioEdit, {
+                            where: {id: idUsuario}
+                        })
+                        .then(function(resultado2){
+                            return res.redirect("/user/profile/" + resultado.id)
+                        })
+                        .catch(function (error) {
+                            res.send(error)
+                        })
+                    }
+                } else {
+                    return res.send ("Lo sentimos, el perfil no existe")
+                }
+        })
+        .catch(function(error){
+            return res.send(error)
+        })
+        }
+
+
+    }     
 };
 
 module.exports = userController;

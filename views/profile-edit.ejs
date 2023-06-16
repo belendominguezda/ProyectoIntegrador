@@ -14,44 +14,53 @@
 		<div class="row">
 			<div class="col-12">
 				<h2 class="products-title">Editar mi perfil</h2>
+				<h3>Complete los campos que quiera modificar, si no quiere modificar algun campo, dejarlo vacío</h3>
+				<% if (locals.errors) {%>
+					<p class = "errorsMessage"><%= errors.message%></p> 
+				<% } %>
 			</div>
-			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"></h2>
+			
 			<div>
 				<article>
-					<form action="/index" method="get">
+					<form action="/user/profile-edit/<%=resultado.id%>" method="POST">
 						<div>
+						<p>Email actual: <strong><%= resultado.email %></strong></p>
 						<input type="email" name="email" placeholder="Email">
 						</div>
 			
 						<br>
 			
 						<div>
+							<p>Nombre de usuario actual:<strong> <%= resultado.usuario%></strong></p>
 							<input type="text" name="usuario" placeholder="Usuario">
 						</div>
 			
 						<br>
 			
 						<div>
+							<p>Por razones de segugridad, no mostramos su contraseña</p>
 							<input type="text" name="contrasena" placeholder="Contrasena">
 						</div>
 			
 						<br>
 			
 						<div>
+							<p>Fecha de nacimiento actual: <strong><%= resultado.fechaNacimiento %></strong></p>
 							<input type="date" name="fechaNacimiento" placeholder="Fecha de nacimiento">
 						</div>
 			
 						<br>
 			
 						<div>
-							<input type="number" name="documento" placeholder="Numero de documento">
+							<p>Número de documento actual: <strong><%= resultado.dni %></strong></p>
+							<input type="number" name="dni" placeholder="Numero de documento">
 						</div>
 			
 						<br>
 			
 						<div>
-							<input type="file" name="fotoPerfil" placeholder="Foto de perfil">
+							<p>Foto de perfil actual: <strong ><a href="<%= resultado.imagenPerfil %>">click</a></strong></p>
+							<input type="text" name="imagenPerfil" placeholder="Foto de perfil">
 						</div>
 			
 						<br>

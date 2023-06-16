@@ -12,9 +12,10 @@
 	<!-- Banner -->
 	<p>
 		<% if (locals.errors) {%>
-			<p class="errorsMessage" style="color: red"><%= errors.message%></p> 
-		<% } %>
+			<p class="errorsMessage" style="color: red"><%= errors.message%>. <strong><a href="/">Volver al inicio</a></strong></p> 
+		<% } else { %>
 	</p>
+
 	<div class="banner">
 		<img src="./images/BANNER.png" alt="Banner de ofertas">
 	</div>
@@ -48,6 +49,8 @@
 		<%} %>
 		</div>
 	</div>
+	<% } %>
+
 
 	<!-- footer -->
 	<%- include('./partials/footer') %>
