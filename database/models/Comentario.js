@@ -1,6 +1,6 @@
 const config = require("../config/config")
 
-module.exports = function(sequelize,DataTypes){
+module.exports = function(sequelize,DataTypes){ //funcion (con dos parametros; sequelize y dataTypes) que representa al modelo
     let alias = "Comentario"; //es el nombre del modelo en el controlador
     
     let cols = {
@@ -33,11 +33,12 @@ module.exports = function(sequelize,DataTypes){
         tableName: "tablaComentarios",
     }
 
-    let Comentario = sequelize.define(alias,cols,config);
+    let Comentario = sequelize.define(alias,cols,config); //guardamos en una variable la ejecucion del metodo define (que obtenemos del parametro sequelize)
     
     //Asociacion con la tabla de usuario
-    Comentario.associate = function(models){
+    Comentario.associate = function(models){ //models como parametro que representa a todos los modelos
         Comentario.belongsTo(models.Usuario,{
+           //caracteristicas de la relacion
             as: "usuario",
             foreignKey : "usuario_id"
         });

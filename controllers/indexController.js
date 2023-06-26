@@ -3,14 +3,11 @@ let op = db.Sequelize.Op;
 let bcrypt = require('bcryptjs');
 
 let indexController = {
+
     index : function (req,res){
         db.Producto.findAll({
-            include: [
-                {association: "usuario"}, {association: "comentario"}
-            ],
-            order: [
-                ['createdAt' , 'DESC']
-            ]
+            include: [{association: "usuario"}, {association: "comentario"}],
+            order: [['createdAt' , 'DESC']]
         })
             .then(function(productoAll){
                 //return res.send (productoAll)
@@ -21,31 +18,18 @@ let indexController = {
                 console.log(error);
             })
     },
+
     search: function (req,res){
         let formBusqueda = req.query.search
 
         db.Producto.findAll({
                 where: {
                     [op.or]:[
-                    {
-                        nombreProducto: {
-                            [op.like]:  `%${formBusqueda}%`
-                        }
-                    },
-
-                    {
-                        descripcionProducto: {
-                            [op.like]: `%${formBusqueda}%`
-                        }
-                    }
+                    {nombreProducto: {[op.like]:  `%${formBusqueda}%`}},
+                    {descripcionProducto: {[op.like]: `%${formBusqueda}%`}}
                 ]},
-                order: [
-                    ['createdAt', 'ASC']
-                ],
-                include: [
-                    {association: "usuario"},{association: "comentario"}
-                ]
-    
+                order: [['createdAt', 'ASC']],
+                include: [{association: "usuario"},{association: "comentario"}]
             })
                 .then(function(resultado){
                     //return res.send(resultado)
@@ -60,8 +44,8 @@ let indexController = {
                 })
 
     },
+    
     searchUser: function (req,res){
-
     }
 }
 

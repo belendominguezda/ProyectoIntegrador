@@ -16,7 +16,7 @@
 
 			<article>
 				<form action="/user/register" method="POST"> 
-					<div>
+					<div> <!-- Mostramos el error al usuario -->
 						<% if (locals.errors) {%>
 							<p class = "errorsMessage"><%= errors.message%></p> 
 						<% } %>

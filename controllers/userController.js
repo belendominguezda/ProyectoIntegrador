@@ -7,16 +7,13 @@ let userController = {
         return res.render ('register',{
         })
     },
+  
     profile: function (req,res){
         let idUsuario = req.params.id
 
         db.Usuario.findByPk (idUsuario, {
-            include: [
-                {association: "productos"}
-                ],
-                order: [
-                    ['createdAt', 'ASC']
-                ]
+            include:[{association: "productos"}],
+            order:[['createdAt', 'ASC']]
         })
         .then(function(resultado){
             if (resultado != undefined){
@@ -41,18 +38,22 @@ let userController = {
         })
 
     },
+   
     edit: function(req,res){
         return res.render ('profile-edit',{
             informacion : db.lista,
         })
     },
+    
     login: function (req,res){
         if (req.session.user != undefined){
             return res.redirect ('/')
         } else{
             return res.render ('login')
         }
-    },store: function(req,res){
+    },
+    
+    store: function(req,res){
         let form = req.body
 
             email = form.email;
@@ -68,9 +69,9 @@ let userController = {
         }
         db.Usuario.findOne(buscaEmail)
             .then (function(resultado){
-                let errors = {};
+                let errors = {}; 
             if (email == ""){
-                errors.message = "El campo de email es obligatorio";
+                errors.message = "El campo de email es obligatorio";  
                 res.locals.errors = errors;
                 return res.render ('register');
             } else if (contrasena == ""){
@@ -109,14 +110,15 @@ let userController = {
                 })
             }
             })
-             
-    },processLogin: function(req,res){
+    },
+   
+    processLogin: function(req,res){
         //buscar los datos de la db 
         let email = req.body.email;
         let contrasena = req.body.contrasena
 
         let busca = {
-            where : [{email : email}]
+            where : [{email : email}] //email(campo de mi db) = email(lo que viene del form --> req.body.email)
         };
 
         db.Usuario.findOne(busca)
@@ -124,15 +126,15 @@ let userController = {
             .then(function(resultado){
                 let errors = {};
                 if (resultado != null){
-                    let contra = resultado.contrasena
-                    let contrasenaCorrecta = bcrypt.compareSync(contrasena, contra)
+                    let contra = resultado.contrasena //esto es lo que tengo en la db
+                    let contrasenaCorrecta = bcrypt.compareSync(contrasena, contra) //contrasena es lo que viene del formulario
 
                     if (contrasenaCorrecta == true){
                         //Lo pongo en session
                         req.session.user = resultado
 
                         if (req.body.recordarme != undefined){
-                            res.cookie('cookieEspecial', 'resultado.id', {maxAge: 100*60*15});
+                            res.cookie('cookieEspecial', resultado.id, {maxAge: 100*60*15});
                         }
                         return res.redirect ('/')
                     } else {
@@ -157,7 +159,9 @@ let userController = {
             }) .catch(function(error){
                 console.log(error);
             })
-    },logout: function(req,res){
+    },
+    
+    logout: function(req,res){
         //Destruyo la session
         req.session.destroy();
         //Destruyo la cookie
@@ -165,7 +169,9 @@ let userController = {
 
         return res.redirect('/');
 
-    }, editar: function(req,res){
+    },
+   
+    editar: function(req,res){
         if (req.session.user != undefined){
             let idUsuario = req.params.id
 
@@ -189,9 +195,9 @@ let userController = {
         } else {
             return res.redirect('/user/login')
         }
-
-
-    }, editarUsuario: function(req,res){
+    },
+   
+    editarUsuario: function(req,res){
         let idUsuario = req.params.id;
         let errors = {};
 
@@ -258,8 +264,6 @@ let userController = {
             return res.send(error)
         })
         }
-
-
     }     
 };
 

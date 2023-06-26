@@ -14,22 +14,22 @@ let productsController = {
         .then(function(resultado){ //resultado devuelve la informacion con la db que coincide con el id del producto
             //return res.send(resultado.comentario)
             comentario = resultado.comentario
-            return res.render ('products', {resultado: resultado, comentario : comentario})
-
+            return res.render ('products', {resultado: resultado, comentario: comentario})
         })
         .catch(function(error){
             console.log(error);
         })
     },
-    add : function(req,res){
+
+    add: function(req,res){
         if (req.session.user) {
             return res.render("product-add")
         } else {
             return res.redirect("/user/login")
         }
-
         //return res.render ('product-add')
     },
+
     addForm: function(req,res){
         let form = req.body
 
@@ -50,8 +50,9 @@ let productsController = {
                 return res.redirect('/user/login')
             }
         })
-
-    }, eliminarProducto: function(req,res) {
+    }, 
+    
+    eliminarProducto: function(req,res) {
         let idProducto = req.params.id;
         let userId = req.session.user.id
 
@@ -63,11 +64,11 @@ let productsController = {
                 if (resultado.usuario.id != req.session.user.id){ 
                     return res.send("No puedes eliminar este posteo")
                 } else {
-                    db.Producto.destroy({
+                    db.Producto.destroy({ 
                         where: {
                             id : idProducto
                         },
-                        force : true
+                        force : true //forzar la eliminación del objeto sin realizar ninguna verificación adicional
                     })
                     .then(function(resultado){
                         return res.redirect("/user/profile/" + userId)
@@ -80,8 +81,9 @@ let productsController = {
         } else {
             return res.redirect('/users/login')
         }
-       
-    }, editar: function(req,res){
+    }, 
+    
+    editar: function(req,res){
         if (req.session.user != undefined){
             let idProducto = req.params.id
 
@@ -103,12 +105,12 @@ let productsController = {
             .catch(function(error) {
                 return res.send(error)
             })
-            
         } else {
             return res.redirect('/user/login')
         }
-
-    }, editarProducto: function(req,res){ //este metodo corresponde a la edicion de productos que viaja por POST
+    }, 
+    
+    editarProducto: function(req,res){ //este metodo corresponde a la edicion de productos que viaja por POST
         let idProducto = req.params.id;
 
         if (req.session.user != undefined){
@@ -158,10 +160,11 @@ let productsController = {
         .catch(function(error){
             return res.send(error)
         })
-
         } 
-    }, comentario: function(req,res){
-        let errors = {}
+    }, 
+    
+    comentario: function(req,res){
+        let errors = {} //crear un lugar p. guardar mensajes de error
 
         if (req.session.user != undefined){
             let idProducto = req.params.id;

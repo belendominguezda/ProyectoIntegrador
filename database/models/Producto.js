@@ -1,6 +1,6 @@
 const config = require("../config/config")
 
-module.exports = function(sequelize,DataTypes){
+module.exports = function(sequelize,DataTypes){ //funcion (con dos parametros: sequelize y DataTypes) que representa al modelo
     let alias = "Producto"; //es el nombre del modelo en el controlador
     
     let cols = {
@@ -43,9 +43,11 @@ module.exports = function(sequelize,DataTypes){
         underscored: false
     }
 
-    let Producto = sequelize.define(alias,cols,config);
+    //guardamos en una variable la ejecucion del metodo define (que obtenemos del parametro sequelize)
+    let Producto = sequelize.define(alias,cols,config); 
+     
     //Asociacion tabla de productos con usuario (muchos productos tienen un usuario)
-    Producto.associate = function(models){
+    Producto.associate = function(models){ //models como parametro que representa a todos los modelos
         Producto.belongsTo(models.Usuario,{
             as: "usuario",
             foreignKey : "usuario_id"
@@ -56,7 +58,5 @@ module.exports = function(sequelize,DataTypes){
         })
     }
 
-    //Asociacion tabla de productos con la de comentarios (un producto tiene muchos comentarios)
-  
     return Producto
 }
